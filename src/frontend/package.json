@@ -1,0 +1,15 @@
+{
+  "name": "gpu-performance-monitor-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^18",
+    "react-dom": "^18",
+    "react-scripts": "latest",
+    "chart.js": "^4",
+    "react-chartjs-2": "^5"
+  },
+  "scripts": {
+    "start": "react-scripts start"
+  }
+}

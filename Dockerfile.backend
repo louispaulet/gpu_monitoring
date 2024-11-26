@@ -1,0 +1,16 @@
+# Dockerfile.backend
+
+FROM nvidia/cuda:12.6.2-cudnn-runtime-ubuntu20.04
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y python3 python3-pip
+
+COPY requirements.txt /app/
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+COPY src/backend /app
+
+EXPOSE 5000
+
+CMD ["python3", "app.py"]

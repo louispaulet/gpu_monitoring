@@ -1,0 +1,20 @@
+# Dockerfile.frontend
+
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copy package files and install dependencies
+COPY src/frontend/package*.json ./
+COPY src/frontend/.env ./
+RUN npm install
+
+# Copy the rest of the application code
+COPY src/frontend/ /app
+
+# List the contents of /app/src after copying
+RUN echo "Listing contents of /app/src:" && ls -al /app/src
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
