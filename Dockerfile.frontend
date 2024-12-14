@@ -9,6 +9,9 @@ COPY src/frontend/package*.json ./
 COPY src/frontend/.env ./
 RUN npm install
 
+# Initialize TailwindCSS and PostCSS configuration
+RUN npx tailwindcss init -p
+
 # Copy the rest of the application code
 COPY src/frontend/ /app
 

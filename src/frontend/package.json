@@ -7,9 +7,13 @@
     "react-dom": "^18",
     "react-scripts": "latest",
     "chart.js": "^4",
-    "react-chartjs-2": "^5"
+    "react-chartjs-2": "^5",
+    "tailwindcss": "^3",
+    "postcss": "^8",
+    "autoprefixer": "^10"
   },
   "scripts": {
-    "start": "react-scripts start"
+    "start": "react-scripts start",
+    "build": "react-scripts build"
   }
 }
