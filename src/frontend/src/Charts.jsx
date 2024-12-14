@@ -92,6 +92,20 @@ const Charts = () => {
     ],
   };
 
+  const cpuData = {
+    labels,
+    datasets: [
+      {
+        label: 'CPU Utilization (%)',
+        data: metrics.map((metric) => metric.cpu_utilization),
+        borderColor: '#ef4444',
+        backgroundColor: 'rgba(239, 68, 68, 0.2)',
+        tension: 0.3,
+        fill: true,
+      },
+    ],
+  };
+
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -120,6 +134,14 @@ const Charts = () => {
         </div>
       </div>
       <div className="grid grid-cols-2 gap-4 mt-4">
+        <div className="h-64">
+          <Line data={temperatureData} options={{ ...options, scales: { y: { max: 100 } } }} />
+        </div>
+        <div className="h-64">
+          <Line data={cpuData} options={{ ...options, scales: { y: { max: 100 } } }} />
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-4 mt-4">
         <div className="flex flex-col justify-center p-4 bg-gray-100 rounded-lg">
           <h2 className="text-xl font-bold mb-2">GPU Stats</h2>
           <p><strong>Latest GPU Utilization:</strong> {metrics[metrics.length - 1]?.gpu_utilization}%</p>
@@ -127,8 +149,9 @@ const Charts = () => {
           <p><strong>Total Memory:</strong> {metrics[metrics.length - 1]?.memory_total} MB</p>
           <p><strong>Temperature:</strong> {metrics[metrics.length - 1]?.temperature} °C</p>
         </div>
-        <div className="h-64">
-          <Line data={temperatureData} options={{ ...options, scales: { y: { max: 100 } } }} />
+        <div className="flex flex-col justify-center p-4 bg-gray-100 rounded-lg">
+          <h2 className="text-xl font-bold mb-2">CPU Stats</h2>
+          <p><strong>Latest CPU Utilization:</strong> {metrics[metrics.length - 1]?.cpu_utilization}%</p>
         </div>
       </div>
     </div>
