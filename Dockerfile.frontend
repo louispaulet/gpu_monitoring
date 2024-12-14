@@ -1,23 +1,19 @@
-# Dockerfile.frontend
-
-FROM node:18-alpine
+# Use Node.js v20
+FROM node:20
 
 WORKDIR /app
 
-# Copy package files and install dependencies
-COPY src/frontend/package*.json ./
-COPY src/frontend/.env ./
+# Copy package.json and package-lock.json
+COPY src/frontend/package.json src/frontend/package-lock.json ./
+
+# Install dependencies
 RUN npm install
 
-# Initialize TailwindCSS and PostCSS configuration
-RUN npx tailwindcss init -p
+# Copy the entire frontend code
+COPY src/frontend ./
 
-# Copy the rest of the application code
-COPY src/frontend/ /app
+# Generate the TailwindCSS build
+RUN npx tailwindcss -i ./src/index.css -o ./src/output.css
 
-# List the contents of /app/src after copying
-RUN echo "Listing contents of /app/src:" && ls -al /app/src
-
-EXPOSE 3000
-
+# Start the frontend
 CMD ["npm", "start"]
