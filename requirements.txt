@@ -4,3 +4,4 @@ Jinja2==2.11.3
 MarkupSafe==1.1.1
 pynvml==11.4.1
 flask-cors==3.0.10
+psutil==5.9.4
